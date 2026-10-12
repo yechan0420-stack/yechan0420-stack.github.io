@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>김예찬 | 자기소개서</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+:root{--c1:#7a5cf0;--c2:#ec5f9e;--bg:#0a0910;--card:#17152a;--line:#2c2946;--text:#f3f1fb;--muted:#aaa6c4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif}
+.page{min-height:100vh;padding:40px 6vw 64px;display:flex;flex-direction:column;gap:32px;background:radial-gradient(900px 500px at 15% -10%,#2a1d5e 0%,transparent 60%),var(--bg)}
+.badge{display:flex;align-items:center;gap:10px;width:fit-content;padding:10px 18px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px;color:#b9b5d3}
+.badge i{width:9px;height:9px;border-radius:50%;background:#5fd68a}
+.hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:48px}
+.left{flex:1 1 460px;max-width:680px;display:flex;flex-direction:column;gap:28px}
+h1{margin:0;font-size:clamp(44px,6.4vw,92px);line-height:1.1;font-weight:900;letter-spacing:-.04em}
+h1 span{display:block}
+h1 .grad{background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.left p{margin:0;font-size:17px;line-height:1.8;color:var(--muted);max-width:620px}
+.btns{display:flex;flex-wrap:wrap;gap:14px}
+.btn{display:inline-flex;align-items:center;min-height:52px;padding:0 30px;border-radius:999px;font-weight:700;font-size:16px;color:var(--text);background:var(--card);border:1px solid var(--line);text-decoration:none}
+.btn.main{color:#14101f;border:0;background:linear-gradient(90deg,var(--c1),var(--c2),#f4b26a)}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.stats{display:flex;gap:28px;width:fit-content;padding:22px 28px;border-radius:22px;background:#131124;border:1px solid var(--line)}
+.stats div{display:flex;flex-direction:column;gap:4px}
+.stats b{font-size:30px}.stats span{font-size:13px;color:#8f8bab}
+.right{flex:0 1 460px;display:flex;justify-content:center;position:relative;padding:24px 0}
+.chip{position:absolute;padding:12px 20px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px;font-weight:700}
+.phone{width:300px;height:590px;padding:12px;border-radius:44px;background:#0f0d1a;border:2px solid var(--line);transform:rotate(3deg);box-shadow:0 30px 90px #5b3fd855}
+.screen{height:100%;border-radius:34px;padding:22px 20px;display:flex;flex-direction:column;background:linear-gradient(180deg,#3a2470 0%,#4a2a6e 45%,#b9504f 100%)}
+.who{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px}
+.who i{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--c1),#f4b26a)}
+.q{margin-top:96px;font-size:22px;line-height:1.45;font-weight:900}
+.q u{text-underline-offset:4px}
+.rows{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.rows div{display:flex;justify-content:space-between;padding:14px 16px;border-radius:14px;background:#ffffff22;font-size:14px;font-weight:700}
+@media(max-width:560px){.stats{gap:18px;padding:18px}.chip{display:none}}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="badge"><i></i><span>국민대학교 경영정보학부 · 1학년</span></div>
+  <section class="hero">
+    <div class="left">
+      <h1><span>[한 줄 슬로건],</span><span class="grad">[핵심 키워드].</span></h1>
+      <p>안녕하세요, 국민대학교 경영정보학부 1학년 21살 김예찬입니다. [어떤 사람인지 한 문장]. [지원하는 곳과 이유 한 문장]. 앞으로 [하고 싶은 일]을 [어떻게 해내고 싶은지] 이야기하려 합니다.</p>
+      <div class="btns">
+        <a class="btn main" href="#">경험 살펴보기 →</a>
+        <a class="btn" href="#">나는 어떤 사람?</a>
+      </div>
+      <div class="stats">
+        <div><b>[00]</b><span>프로젝트</span></div>
+        <div><b>[00]</b><span>년 경력</span></div>
+        <div><b>[00]</b><span>수상·자격</span></div>
+      </div>
+    </div>
+    <div class="right" aria-hidden="true">
+      <span class="chip" style="top:60px;left:0">강점 · [키워드 1]</span>
+      <span class="chip" style="top:280px;right:0">강점 · [키워드 2]</span>
+      <span class="chip" style="bottom:40px;left:8px">강점 · [키워드 3]</span>
+      <div class="phone"><div class="screen">
+        <div class="who"><i></i><span>@your_name</span></div>
+        <div class="q">[지원 동기를 묻는 한 줄 질문],<br>어떻게 <u>[핵심 가치]</u>가 될까?</div>
+        <div class="rows">
+          <div><span>[역량 1]</span><span>[00]</span></div>
+          <div><span>[역량 2]</span><span>[00]</span></div>
+          <div><span>[역량 3]</span><span>[00]</span></div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
