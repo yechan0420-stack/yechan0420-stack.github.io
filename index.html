@@ -4,10 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>김예찬 | 자기소개서</title>
+<meta name="description" content="국민대학교 경영정보학부 1학년 김예찬의 자기소개 페이지입니다. 경험과 강점, 지향하는 가치를 소개합니다.">
+<meta name="theme-color" content="#0a0910">
+<meta property="og:type" content="website">
+<meta property="og:title" content="김예찬 | 자기소개서">
+<meta property="og:description" content="국민대학교 경영정보학부 1학년 김예찬의 자기소개 페이지.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237a5cf0'/%3E%3Ctext x='16' y='22' font-size='18' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3E김%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
 <style>
 :root{--c1:#7a5cf0;--c2:#ec5f9e;--bg:#0a0910;--card:#17152a;--line:#2c2946;--text:#f3f1fb;--muted:#aaa6c4}
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif}
 .page{min-height:100vh;padding:40px 6vw 64px;display:flex;flex-direction:column;gap:32px;background:radial-gradient(900px 500px at 15% -10%,#2a1d5e 0%,transparent 60%),var(--bg)}
 .badge{display:flex;align-items:center;gap:10px;width:fit-content;padding:10px 18px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px;color:#b9b5d3}
@@ -36,6 +43,16 @@ h1 .grad{background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-backgroun
 .rows{margin-top:auto;display:flex;flex-direction:column;gap:10px}
 .rows div{display:flex;justify-content:space-between;padding:14px 16px;border-radius:14px;background:#ffffff22;font-size:14px;font-weight:700}
 @media(max-width:560px){.stats{gap:18px;padding:18px}.chip{display:none}}
+/* 추가 섹션 */
+.section{max-width:980px;width:100%}
+.section h2{font-size:clamp(28px,4vw,40px);font-weight:900;letter-spacing:-.03em;margin:0 0 8px}
+.section .desc{color:var(--muted);margin:0 0 28px;font-size:16px;line-height:1.8}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.item{padding:24px;border-radius:20px;background:var(--card);border:1px solid var(--line)}
+.item h3{margin:0 0 10px;font-size:19px}
+.item p{margin:0;color:var(--muted);font-size:15px;line-height:1.7}
+.contact{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
+footer{color:#7f7b9a;font-size:13px;text-align:center;padding-top:16px;border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
@@ -46,8 +63,8 @@ h1 .grad{background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-backgroun
       <h1><span>[한 줄 슬로건],</span><span class="grad">[핵심 키워드].</span></h1>
       <p>안녕하세요, 국민대학교 경영정보학부 1학년 21살 김예찬입니다. [어떤 사람인지 한 문장]. [지원하는 곳과 이유 한 문장]. 앞으로 [하고 싶은 일]을 [어떻게 해내고 싶은지] 이야기하려 합니다.</p>
       <div class="btns">
-        <a class="btn main" href="#">경험 살펴보기 →</a>
-        <a class="btn" href="#">나는 어떤 사람?</a>
+        <a class="btn main" href="#experience">경험 살펴보기 →</a>
+        <a class="btn" href="#about">나는 어떤 사람?</a>
       </div>
       <div class="stats">
         <div><b>[00]</b><span>프로젝트</span></div>
@@ -70,6 +87,37 @@ h1 .grad{background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-backgroun
       </div></div>
     </div>
   </section>
+
+  <section class="section" id="about">
+    <h2>나는 어떤 사람?</h2>
+    <p class="desc">[자신을 한두 문장으로 소개하세요. 가치관, 성격, 일할 때 중요하게 여기는 점 등]</p>
+    <div class="grid">
+      <div class="item"><h3>[강점 1]</h3><p>[이 강점을 보여주는 짧은 설명이나 사례]</p></div>
+      <div class="item"><h3>[강점 2]</h3><p>[이 강점을 보여주는 짧은 설명이나 사례]</p></div>
+      <div class="item"><h3>[강점 3]</h3><p>[이 강점을 보여주는 짧은 설명이나 사례]</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <h2>경험 살펴보기</h2>
+    <p class="desc">[참여한 프로젝트, 활동, 학습 경험을 소개하세요.]</p>
+    <div class="grid">
+      <div class="item"><h3>[경험/프로젝트 1]</h3><p>[무엇을, 어떤 역할로, 어떤 결과를 냈는지]</p></div>
+      <div class="item"><h3>[경험/프로젝트 2]</h3><p>[무엇을, 어떤 역할로, 어떤 결과를 냈는지]</p></div>
+      <div class="item"><h3>[경험/프로젝트 3]</h3><p>[무엇을, 어떤 역할로, 어떤 결과를 냈는지]</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>연락하기</h2>
+    <p class="desc">[연락 가능한 방법을 남겨보세요.]</p>
+    <div class="contact">
+      <a class="btn" href="mailto:[이메일 주소]">이메일 보내기</a>
+      <a class="btn" href="[GitHub 또는 SNS 주소]">GitHub</a>
+    </div>
+  </section>
+
+  <footer>© 2026 김예찬 · 국민대학교 경영정보학부</footer>
 </main>
 </body>
 </html>
