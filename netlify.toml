@@ -1,0 +1,20 @@
+# Netlify 배포 설정 — 김예찬 자기소개 홈페이지 (방명록 기능)
+#
+# 이 프로젝트는 빌드 과정이 없는 정적 사이트 + 서버리스 함수 구성이다.
+# - 공개(publish) 대상: 프로젝트 루트의 정적 파일 (index.html 등)
+# - 서버 함수: netlify/functions/ 디렉터리 (Node.js 런타임, Netlify 클라우드에서 실행)
+
+[build]
+  # 별도 빌드 단계 없음(정적 사이트). 공개 폴더는 루트.
+  publish = "."
+  command = ""
+  functions = "netlify/functions"
+
+[functions]
+  # 함수 런타임: Node.js (Netlify 기본)
+  node_bundler = "esbuild"
+
+# 참고:
+# - 환경변수(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)는 이 파일에 적지 않는다.
+#   Netlify 대시보드의 Site settings > Environment variables 에만 입력한다.
+# - .git, .env, .kiro, node_modules 등은 .gitignore 로 저장소/공개 출력에서 제외한다.

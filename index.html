@@ -64,6 +64,26 @@ h1 .grad{background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-backgroun
 .tl p{margin:0;color:var(--muted);font-size:15px;line-height:1.7}
 .contact{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
 footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;border-top:1px solid var(--line)}
+/* 방명록 */
+.gb-form{display:flex;flex-direction:column;gap:12px;max-width:560px;padding:22px;border-radius:20px;background:var(--card);border:1px solid var(--line);box-shadow:0 16px 36px -28px #7a5cf066}
+.gb-form label{font-size:14px;font-weight:700;display:flex;flex-direction:column;gap:6px}
+.gb-form input,.gb-form textarea{font-family:inherit;font-size:15px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--text);resize:vertical}
+.gb-form textarea{min-height:72px}
+.gb-form input:focus-visible,.gb-form textarea:focus-visible{outline:3px solid var(--c1);outline-offset:1px}
+.gb-count{font-size:12px;color:var(--muted);font-weight:400}
+.gb-submit{align-self:flex-start;min-height:48px;padding:0 26px;border-radius:999px;font-weight:700;font-size:15px;color:#fff;border:0;cursor:pointer;background:linear-gradient(90deg,var(--c1),var(--c2))}
+.gb-submit:disabled{opacity:.55;cursor:not-allowed}
+.gb-status{font-size:14px;min-height:20px;margin:0}
+.gb-status.err{color:#c0392b}
+.gb-status.ok{color:#2a8a4a}
+.gb-status.load{color:var(--muted)}
+.gb-list{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-direction:column;gap:12px;max-width:560px}
+.gb-list li{padding:14px 16px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.gb-list .gb-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:4px}
+.gb-list .gb-name{font-weight:700;font-size:15px}
+.gb-list .gb-time{font-size:12px;color:var(--muted)}
+.gb-list .gb-msg{margin:0;font-size:15px;line-height:1.6;color:var(--text);white-space:pre-wrap;word-break:break-word}
+.gb-more{font-size:13px;color:var(--muted);margin:12px 0 0}
 </style>
 </head>
 <body>
@@ -154,7 +174,176 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;bord
     </div>
   </section>
 
+  <section class="section" id="guestbook">
+    <h2>방명록</h2>
+    <p class="desc">짧은 인사를 남겨 주세요. 이름과 한 줄 메시지가 아래에 공개됩니다.</p>
+
+    <form class="gb-form" id="gb-form" novalidate>
+      <label>이름
+        <span class="gb-count" id="gb-name-count">0 / 20</span>
+        <input type="text" id="gb-name" maxlength="20" autocomplete="name" required>
+      </label>
+      <label>메시지
+        <span class="gb-count" id="gb-message-count">0 / 200</span>
+        <textarea id="gb-message" maxlength="200" required></textarea>
+      </label>
+      <button type="submit" class="gb-submit" id="gb-submit">남기기</button>
+      <p class="gb-status" id="gb-status" role="status" aria-live="polite"></p>
+    </form>
+
+    <ul class="gb-list" id="gb-list" aria-live="polite"></ul>
+    <p class="gb-more" id="gb-more" hidden></p>
+  </section>
+
   <footer>© 2026 김예찬 · 국민대학교 경영정보학부</footer>
 </main>
+
+<script>
+(function () {
+  var API = '/.netlify/functions/guestbook';
+  var NAME_MAX = 20, MESSAGE_MAX = 200;
+
+  var form = document.getElementById('gb-form');
+  var nameEl = document.getElementById('gb-name');
+  var msgEl = document.getElementById('gb-message');
+  var submitEl = document.getElementById('gb-submit');
+  var statusEl = document.getElementById('gb-status');
+  var listEl = document.getElementById('gb-list');
+  var moreEl = document.getElementById('gb-more');
+  var nameCount = document.getElementById('gb-name-count');
+  var msgCount = document.getElementById('gb-message-count');
+
+  function setStatus(text, kind) {
+    statusEl.textContent = text;
+    statusEl.className = 'gb-status' + (kind ? ' ' + kind : '');
+  }
+
+  function fmtTime(iso) {
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    return d.getFullYear() + '.' +
+      String(d.getMonth() + 1).padStart(2, '0') + '.' +
+      String(d.getDate()).padStart(2, '0') + ' ' +
+      String(d.getHours()).padStart(2, '0') + ':' +
+      String(d.getMinutes()).padStart(2, '0');
+  }
+
+  // 사용자 입력은 textContent로만 넣는다 → HTML로 실행되지 않음(XSS 방어)
+  function renderEntries(entries) {
+    listEl.textContent = '';
+    if (!entries || entries.length === 0) {
+      var empty = document.createElement('li');
+      empty.className = 'gb-msg';
+      empty.textContent = '아직 남겨진 메시지가 없어요. 첫 메시지를 남겨 보세요.';
+      listEl.appendChild(empty);
+      return;
+    }
+    entries.forEach(function (e) {
+      var li = document.createElement('li');
+      var head = document.createElement('div');
+      head.className = 'gb-head';
+      var name = document.createElement('span');
+      name.className = 'gb-name';
+      name.textContent = e.name;            // 안전한 텍스트 표시
+      var time = document.createElement('span');
+      time.className = 'gb-time';
+      time.textContent = fmtTime(e.created_at);
+      head.appendChild(name);
+      head.appendChild(time);
+      var msg = document.createElement('p');
+      msg.className = 'gb-msg';
+      msg.textContent = e.message;          // 안전한 텍스트 표시
+      li.appendChild(head);
+      li.appendChild(msg);
+      listEl.appendChild(li);
+    });
+  }
+
+  function showMore(total, shown) {
+    if (typeof total === 'number' && total > shown) {
+      moreEl.textContent = '최신 ' + shown + '개만 표시 중 (전체 ' + total + '개)';
+      moreEl.hidden = false;
+    } else {
+      moreEl.hidden = true;
+    }
+  }
+
+  function load() {
+    setStatus('메시지를 불러오는 중…', 'load');
+    fetch(API, { method: 'GET' })
+      .then(function (res) {
+        return res.json().then(function (body) { return { ok: res.ok, body: body }; });
+      })
+      .then(function (r) {
+        if (!r.ok) {
+          setStatus((r.body && r.body.error) || '메시지를 불러오지 못했어요.', 'err');
+          return;
+        }
+        renderEntries(r.body.entries);
+        showMore(r.body.total, r.body.shown);
+        setStatus('', '');
+      })
+      .catch(function () {
+        setStatus('메시지를 불러오지 못했어요. 네트워크를 확인해 주세요.', 'err');
+      });
+  }
+
+  nameEl.addEventListener('input', function () {
+    nameCount.textContent = nameEl.value.length + ' / ' + NAME_MAX;
+  });
+  msgEl.addEventListener('input', function () {
+    msgCount.textContent = msgEl.value.length + ' / ' + MESSAGE_MAX;
+  });
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var name = nameEl.value.trim();
+    var message = msgEl.value.trim();
+
+    // 1차(클라이언트) 검증 — 서버도 동일하게 재검증한다
+    if (!name || !message) {
+      setStatus('이름과 메시지를 입력해 주세요.', 'err');
+      return;
+    }
+    if (name.length > NAME_MAX || message.length > MESSAGE_MAX) {
+      setStatus('글자 수를 줄여 주세요.', 'err');
+      return;
+    }
+
+    submitEl.disabled = true;               // 중복 제출 방지
+    setStatus('저장 중…', 'load');
+
+    fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, message: message })
+    })
+      .then(function (res) {
+        return res.json().then(function (body) { return { ok: res.ok, body: body }; });
+      })
+      .then(function (r) {
+        if (!r.ok) {
+          // 실패를 성공처럼 표시하지 않는다
+          setStatus((r.body && r.body.error) || '저장에 실패했어요.', 'err');
+          return;
+        }
+        nameEl.value = '';
+        msgEl.value = '';
+        nameCount.textContent = '0 / ' + NAME_MAX;
+        msgCount.textContent = '0 / ' + MESSAGE_MAX;
+        setStatus('메시지를 남겼어요.', 'ok');
+        load();                              // 저장 후 다시 조회
+      })
+      .catch(function () {
+        setStatus('저장에 실패했어요. 네트워크를 확인해 주세요.', 'err');
+      })
+      .finally(function () {
+        submitEl.disabled = false;
+      });
+  });
+
+  load();                                    // 첫 로드 시 목록 조회
+})();
+</script>
 </body>
 </html>

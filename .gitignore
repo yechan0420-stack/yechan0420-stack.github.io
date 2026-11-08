@@ -1,0 +1,18 @@
+# 의존성
+node_modules/
+
+# 환경변수 / 비밀 (절대 커밋 금지)
+.env
+.env.*
+!.env.example
+
+# 개인 기록 / 에디터 설정 (공개 출력에서 제외)
+.kiro/
+
+# Netlify 로컬 산출물
+.netlify/
+
+# OS / 에디터
+.DS_Store
+Thumbs.db
+*.log
