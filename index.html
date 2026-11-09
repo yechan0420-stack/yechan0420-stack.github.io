@@ -4,30 +4,39 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>김예찬 | 자기소개서</title>
-<meta name="description" content="국민대학교 경영정보학부 1학년 김예찬의 자기소개 페이지입니다. 경험과 강점, 지향하는 가치를 소개합니다.">
-<meta name="theme-color" content="#fbf9ff">
+<meta name="description" content="국민대학교 경영정보학부 김예찬의 자기소개 페이지. 믿음과 책임감으로 팀의 신뢰를 쌓아가는 사람입니다.">
+<meta name="theme-color" content="#121019">
 <meta property="og:type" content="website">
-<meta property="og:title" content="김예찬 | 자기소개서">
-<meta property="og:description" content="국민대학교 경영정보학부 1학년 김예찬의 자기소개 페이지.">
+<meta property="og:title" content="김예찬 | 자기소개">
+<meta property="og:description" content="믿음과 책임감으로 팀의 신뢰를 쌓아가는 사람. 국민대학교 경영정보학부 김예찬.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237a5cf0'/%3E%3Ctext x='16' y='22' font-size='18' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3E김%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
 <style>
-:root{--c1:#7a5cf0;--c2:#ec5f9e;--bg:#fbf9ff;--card:#ffffff;--line:#e7e3f5;--text:#241f3a;--muted:#6f6a86}
+:root{--c1:#ff5fa2;--c2:#ff8ec0;--bg:#121019;--card:#1c1930;--line:#302b47;--text:#f0edf7;--muted:#a69fc0}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif}
-.page{min-height:100vh;padding:40px 6vw 64px;display:flex;flex-direction:column;gap:32px;background:radial-gradient(900px 500px at 15% -10%,#ede7ff 0%,transparent 60%),radial-gradient(700px 400px at 100% 0%,#ffe6f2 0%,transparent 55%),var(--bg)}
+/* 스크롤 페이드인 (과하지 않게) */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
+.page{min-height:100vh;padding:40px 6vw 64px;display:flex;flex-direction:column;gap:32px;background:radial-gradient(900px 500px at 15% -10%,#2a1830 0%,transparent 60%),radial-gradient(700px 400px at 100% 0%,#3a1a2e 0%,transparent 55%),var(--bg)}
 .badge{display:flex;align-items:center;gap:10px;width:fit-content;padding:10px 18px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px;color:#6f6a86;box-shadow:0 6px 20px -12px #7a5cf066}
 .badge i{width:9px;height:9px;border-radius:50%;background:#2fbf71}
 .hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:48px}
 .left{flex:1 1 460px;max-width:680px;display:flex;flex-direction:column;gap:28px}
-h1{margin:0;font-size:clamp(44px,6.4vw,92px);line-height:1.1;font-weight:900;letter-spacing:-.04em}
+h1{margin:0;font-size:clamp(36px,5.4vw,76px);line-height:1.18;font-weight:900;letter-spacing:-.03em;word-break:keep-all}
 h1 span{display:block}
+.name{display:flex;align-items:baseline;gap:12px;margin:0}
+.name-ko{font-size:clamp(28px,3.6vw,44px);font-weight:900;letter-spacing:-.02em}
+.name-en{font-size:clamp(14px,1.4vw,18px);font-weight:500;color:var(--muted)}
 h1 .grad{background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .left p{margin:0;font-size:17px;line-height:1.8;color:var(--muted);max-width:620px}
 .btns{display:flex;flex-wrap:wrap;gap:14px}
-.btn{display:inline-flex;align-items:center;min-height:52px;padding:0 30px;border-radius:999px;font-weight:700;font-size:16px;color:var(--text);background:var(--card);border:1px solid var(--line);text-decoration:none;box-shadow:0 6px 18px -12px #7a5cf055}
-.btn.main{color:#fff;border:0;background:linear-gradient(90deg,var(--c1),var(--c2),#f4b26a);box-shadow:0 14px 30px -14px #ec5f9e88}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 22px;border-radius:6px 14px 6px 6px;font-weight:700;font-size:16px;color:var(--text);background:var(--card);border:1px solid var(--line);text-decoration:none;box-shadow:0 6px 18px -12px #00000066}
+.btn::after{content:"";position:absolute;top:-1px;right:-1px;width:12px;height:12px;background:var(--bg);border-left:1px solid var(--line);border-bottom:1px solid var(--line);border-bottom-left-radius:5px;border-top-right-radius:14px}
+.btn.main{color:#fff;border:0;background:linear-gradient(90deg,var(--c1),var(--c2));box-shadow:0 14px 30px -14px #ff5fa288}
+.btn.main::after{background:#ffa6cd;border-color:#ffffff66}
 .btn:focus-visible{outline:3px solid var(--c1);outline-offset:3px}
 .stats{display:flex;gap:28px;width:fit-content;padding:22px 28px;border-radius:22px;background:var(--card);border:1px solid var(--line);box-shadow:0 18px 40px -26px #7a5cf066}
 .stats div{display:flex;flex-direction:column;gap:4px}
@@ -42,17 +51,25 @@ h1 .grad{background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-backgroun
 .q u{text-underline-offset:4px}
 .rows{margin-top:auto;display:flex;flex-direction:column;gap:10px}
 .rows div{display:flex;justify-content:space-between;padding:14px 16px;border-radius:14px;background:#ffffff22;font-size:14px;font-weight:700}
+/* 강점 요약 카드 (phone 목업 대체) */
+.keycard{width:100%;max-width:380px;padding:26px;border-radius:24px;background:var(--card);border:1px solid var(--line);box-shadow:0 24px 54px -30px #7a5cf066}
+.keycard-tag{display:inline-block;padding:7px 14px;border-radius:999px;background:linear-gradient(90deg,var(--c1),var(--c2));color:#fff;font-size:13px;font-weight:700;margin-bottom:18px}
+.keylist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.keylist li{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;background:var(--bg);border:1px solid var(--line)}
+.keylist-ic{font-size:22px}
+.keylist b{display:block;font-size:16px}
+.keylist small{color:var(--muted);font-size:13px}
 @media(max-width:560px){.stats{gap:18px;padding:18px}.chip{display:none}}
 /* 추가 섹션 */
 .section{max-width:980px;width:100%}
-.section h2{font-size:clamp(28px,4vw,40px);font-weight:900;letter-spacing:-.03em;margin:0 0 8px}
-.section .desc{color:var(--muted);margin:0 0 28px;font-size:16px;line-height:1.8}
+.section h2{font-family:'Jua','Noto Sans KR',sans-serif;font-size:clamp(22px,2.6vw,27px);font-weight:400;letter-spacing:0;margin:0 0 10px;color:var(--text)}
+.section .desc{font-family:'Jua','Noto Sans KR',sans-serif;color:var(--muted);margin:0 0 28px;font-size:clamp(16px,1.6vw,19px);line-height:1.85}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
 .item{padding:24px;border-radius:20px;background:var(--card);border:1px solid var(--line);box-shadow:0 16px 36px -28px #7a5cf066;transition:transform .2s,box-shadow .2s}
 .item:hover{transform:translateY(-4px);box-shadow:0 22px 44px -24px #7a5cf088}
 .item .ic{font-size:28px;display:block;margin-bottom:8px}
-.item h3{margin:0 0 10px;font-size:19px}
-.item p{margin:0;color:var(--muted);font-size:15px;line-height:1.7}
+.item h3{font-family:'Jua','Noto Sans KR',sans-serif;margin:0 0 8px;font-size:18px;font-weight:400}
+.item p{font-family:'Jua','Noto Sans KR',sans-serif;margin:0;color:var(--muted);font-size:16px;line-height:1.75}
 .tags{display:flex;flex-wrap:wrap;gap:8px}
 .tags span{padding:8px 16px;border-radius:999px;background:linear-gradient(90deg,#f0ebff,#ffe9f4);color:#6a4bd1;font-weight:700;font-size:14px;border:1px solid var(--line)}
 .timeline{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--line);margin-left:8px;padding-left:24px}
@@ -88,93 +105,88 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;bord
 </head>
 <body>
 <main class="page">
-  <div class="badge"><i></i><span>국민대학교 경영정보학부 · 1학년</span></div>
+  <div class="badge"><i></i><span>국민대학교 경영정보학부</span></div>
   <section class="hero">
-    <div class="left">
-      <h1><span>[한 줄 슬로건],</span><span class="grad">[핵심 키워드].</span></h1>
-      <p>안녕하세요, 국민대학교 경영정보학부 1학년 21살 김예찬입니다. [어떤 사람인지 한 문장]. [지원하는 곳과 이유 한 문장]. 앞으로 [하고 싶은 일]을 [어떻게 해내고 싶은지] 이야기하려 합니다.</p>
+    <div class="left reveal">
+      <p class="name"><span class="name-ko">김예찬</span><span class="name-en">Kim Ye-Chan</span></p>
+      <h1><span>믿음과 책임감으로,</span><span class="grad">팀의 신뢰를 쌓습니다.</span></h1>
+      <p>안녕하세요, 국민대학교 경영정보학부 김예찬입니다. 맡은 일은 크고 작음을 따지지 않고 최선을 다해 해내려 합니다. 주변을 챙기고 배려하는 태도로, 함께하는 사람들에게 믿음을 주는 사람이 되고 싶습니다.</p>
       <div class="btns">
-        <a class="btn main" href="#experience">경험 살펴보기 →</a>
-        <a class="btn" href="#about">나는 어떤 사람?</a>
+        <a class="btn main" href="#strength"><span aria-hidden="true">📄</span>나의 강점 보기</a>
+        <a class="btn" href="#about"><span aria-hidden="true">📄</span>나는 어떤 사람?</a>
       </div>
       <div class="stats">
-        <div><b>[00]</b><span>프로젝트</span></div>
-        <div><b>[00]</b><span>년 경력</span></div>
-        <div><b>[00]</b><span>수상·자격</span></div>
+        <div><b>경영정보학부</b><span>국민대학교</span></div>
+        <div><b>SITA학회 운영위원회</b><span>홍보과</span></div>
       </div>
     </div>
-    <div class="right" aria-hidden="true">
-      <span class="chip" style="top:60px;left:0">강점 · [키워드 1]</span>
-      <span class="chip" style="top:280px;right:0">강점 · [키워드 2]</span>
-      <span class="chip" style="bottom:40px;left:8px">강점 · [키워드 3]</span>
-      <div class="phone"><div class="screen">
-        <div class="who"><i></i><span>@your_name</span></div>
-        <div class="q">[지원 동기를 묻는 한 줄 질문],<br>어떻게 <u>[핵심 가치]</u>가 될까?</div>
-        <div class="rows">
-          <div><span>[역량 1]</span><span>[00]</span></div>
-          <div><span>[역량 2]</span><span>[00]</span></div>
-          <div><span>[역량 3]</span><span>[00]</span></div>
-        </div>
-      </div></div>
+    <div class="right reveal">
+      <div class="keycard">
+        <span class="keycard-tag">나를 설명하는 세 가지</span>
+        <ul class="keylist">
+          <li><span class="keylist-ic">🤝</span><div><b>신뢰</b><small>맡은 일로 믿음에 보답합니다</small></div></li>
+          <li><span class="keylist-ic">🧭</span><div><b>리더십</b><small>책임을 먼저 실천합니다</small></div></li>
+          <li><span class="keylist-ic">💬</span><div><b>소통과 배려</b><small>먼저 다가가고 배려합니다</small></div></li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="about">
+  <section class="section reveal" id="about">
     <h2>나는 어떤 사람?</h2>
-    <p class="desc">[자신을 한두 문장으로 소개하세요. 가치관, 성격, 일할 때 중요하게 여기는 점 등]</p>
+    <p class="desc">따뜻한 환경에서 받은 사랑 덕분에, 주변을 먼저 챙기고 배려하는 사람으로 성장했습니다. 함께하는 사람들에게 편안함과 믿음을 주는 것을 중요하게 생각합니다.</p>
+  </section>
+
+  <section class="section reveal" id="values">
+    <h2>나의 가치관</h2>
+    <p class="desc">“맡은 일은 최선을 다해 해내자.” 역할의 크고 작음보다, 그 일을 대하는 책임감과 성실함이 더 중요하다고 믿습니다. 작은 일이라도 끝까지 책임지는 태도가 결국 신뢰를 만든다고 생각합니다.</p>
+  </section>
+
+  <section class="section reveal" id="strength">
+    <h2>나의 강점</h2>
+    <p class="desc">믿음, 책임감, 그리고 사람을 대하는 태도에서 저를 설명하는 세 가지입니다.</p>
     <div class="grid">
-      <div class="item"><span class="ic">💡</span><h3>[강점 1]</h3><p>[이 강점을 보여주는 짧은 설명이나 사례]</p></div>
-      <div class="item"><span class="ic">🤝</span><h3>[강점 2]</h3><p>[이 강점을 보여주는 짧은 설명이나 사례]</p></div>
-      <div class="item"><span class="ic">🚀</span><h3>[강점 3]</h3><p>[이 강점을 보여주는 짧은 설명이나 사례]</p></div>
+      <div class="item"><span class="ic">🤝</span><h3>신뢰</h3><p>믿음은 쌓기 어렵고 깨지기는 쉽다고 생각합니다. 그래서 맡은 일은 그 신뢰에 보답한다는 마음으로 끝까지 해냅니다.</p></div>
+      <div class="item"><span class="ic">🧭</span><h3>리더십</h3><p>학급 회장, 동아리 부장, 학생회, 학회 운영위원회를 거치며 서로 다른 의견을 조율하고, 책임을 먼저 실천하는 리더십을 키웠습니다.</p></div>
+      <div class="item"><span class="ic">💬</span><h3>소통과 배려</h3><p>사과할 줄 아는 태도가 좋은 리더의 조건이라고 생각합니다. 배려와 신뢰를 위해 먼저 사과할 수 있는 사람이 되려 합니다.</p></div>
     </div>
   </section>
 
-  <section class="section" id="interests">
-    <h2>관심 분야 &amp; 스킬</h2>
-    <p class="desc">[배우고 있거나 관심 있는 분야, 다룰 수 있는 도구를 소개하세요.]</p>
-    <div class="grid">
-      <div class="item"><span class="ic">📊</span><h3>관심 분야</h3>
-        <div class="tags"><span>[관심사 1]</span><span>[관심사 2]</span><span>[관심사 3]</span></div>
-      </div>
-      <div class="item"><span class="ic">🛠️</span><h3>다룰 수 있는 것</h3>
-        <div class="tags"><span>[스킬 1]</span><span>[스킬 2]</span><span>[스킬 3]</span></div>
-      </div>
-      <div class="item"><span class="ic">🌐</span><h3>언어</h3>
-        <div class="tags"><span>한국어</span><span>[외국어]</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="values">
-    <h2>내가 걸어온 길</h2>
-    <p class="desc">[성장 과정이나 주요 활동을 시간 순서로 정리해 보세요.]</p>
+  <section class="section reveal" id="experience">
+    <h2>경험 타임라인</h2>
+    <p class="desc">리더의 자리에서 책임을 먼저 실천해 온 과정입니다.</p>
     <div class="timeline">
-      <div class="tl"><b>[연도/시기]</b><h3>[사건·활동 제목]</h3><p>[무엇을 했고 무엇을 배웠는지]</p></div>
-      <div class="tl"><b>[연도/시기]</b><h3>[사건·활동 제목]</h3><p>[무엇을 했고 무엇을 배웠는지]</p></div>
-      <div class="tl"><b>[연도/시기]</b><h3>[사건·활동 제목]</h3><p>[무엇을 했고 무엇을 배웠는지]</p></div>
+      <div class="tl"><b>학창 시절</b><h3>학급 회장 · 동아리 부장 · 학생회</h3><p>여러 역할을 맡으며 의견을 조율하고, 맡은 일에 책임을 지는 법을 배웠습니다.</p></div>
+      <div class="tl"><b>대학 시절</b><h3>경영정보학부 학회 운영위원회 (홍보과)</h3><p>학회 운영위원회 홍보과에서 활동하며 팀으로 일하는 경험과 책임감을 이어가고 있습니다.</p></div>
     </div>
   </section>
 
-  <section class="section" id="experience">
-    <h2>경험 살펴보기</h2>
-    <p class="desc">[참여한 프로젝트, 활동, 학습 경험을 소개하세요.]</p>
+  <section class="section reveal" id="projects">
+    <h2>My Project</h2>
+    <p class="desc">직접 만들어 본 프로젝트입니다.</p>
     <div class="grid">
-      <div class="item"><span class="ic">📌</span><h3>[경험/프로젝트 1]</h3><p>[무엇을, 어떤 역할로, 어떤 결과를 냈는지]</p></div>
-      <div class="item"><span class="ic">📌</span><h3>[경험/프로젝트 2]</h3><p>[무엇을, 어떤 역할로, 어떤 결과를 냈는지]</p></div>
-      <div class="item"><span class="ic">📌</span><h3>[경험/프로젝트 3]</h3><p>[무엇을, 어떤 역할로, 어떤 결과를 냈는지]</p></div>
+      <div class="item">
+        <span class="ic">🕹️</span>
+        <h3>갤러그 게임</h3>
+        <p>HTML·CSS·JavaScript로 만든 갤러그(슈팅) 게임입니다. 브라우저에서 바로 플레이할 수 있습니다.</p>
+        <div class="contact" style="margin-top:14px">
+          <a class="btn" href="https://yechan0420-stack.github.io/game.github.io/" target="_blank" rel="noopener"><span aria-hidden="true">🎮</span>플레이</a>
+          <a class="btn" href="https://github.com/yechan0420-stack/game.github.io" target="_blank" rel="noopener"><span aria-hidden="true">💾</span>소스 코드</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="contact">
-    <h2>연락하기</h2>
-    <p class="desc">[연락 가능한 방법을 남겨보세요.]</p>
+  <section class="section reveal" id="contact">
+    <h2>CONTACT</h2>
+    <p class="desc">아래 링크로 저를 더 알아보실 수 있습니다.</p>
     <div class="contact">
-      <a class="btn" href="mailto:[이메일 주소]">이메일 보내기</a>
-      <a class="btn" href="[GitHub 또는 SNS 주소]">GitHub</a>
+      <a class="btn" href="mailto:yechan0420@kookmin.ac.kr">yechan0420@kookmin.ac.kr</a>
+      <a class="btn" href="https://github.com/yechan0420-stack" target="_blank" rel="noopener">GitHub</a>
     </div>
   </section>
 
-  <section class="section" id="guestbook">
+  <section class="section reveal" id="guestbook">
     <h2>방명록</h2>
     <p class="desc">짧은 인사를 남겨 주세요. 이름과 한 줄 메시지가 아래에 공개됩니다.</p>
 
@@ -197,6 +209,24 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;bord
 
   <footer>© 2026 김예찬 · 국민대학교 경영정보학부</footer>
 </main>
+
+<script>
+// 스크롤 페이드인: 화면에 들어오면 .in 추가 (reduced-motion이면 즉시 표시)
+(function () {
+  var items = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    items.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>
 
 <script>
 (function () {
