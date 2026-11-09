@@ -29,10 +29,13 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',
 h1{margin:0;font-size:clamp(36px,5.4vw,76px);line-height:1.18;font-weight:900;letter-spacing:-.03em;word-break:keep-all}
 h1 span{display:block}
 .name{display:flex;align-items:baseline;gap:12px;margin:0}
-.name-ko{font-size:clamp(28px,3.6vw,44px);font-weight:900;letter-spacing:-.02em}
-.name-en{font-size:clamp(14px,1.4vw,18px);font-weight:500;color:var(--muted)}
+.name-ko{font-family:'Jua','Noto Sans KR',sans-serif;font-size:clamp(30px,3.8vw,46px);font-weight:400;letter-spacing:0}
+.name-en{font-size:clamp(14px,1.4vw,18px);font-weight:500;font-style:italic;color:var(--muted)}
 h1 .grad{background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .left p{margin:0;font-size:17px;line-height:1.8;color:var(--muted);max-width:620px}
+.hl-name{color:#ffffff;font-weight:900}
+.reader{font-size:15px;color:var(--muted)}
+.reader span{color:var(--text);font-weight:600}
 .btns{display:flex;flex-wrap:wrap;gap:14px}
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 22px;border-radius:6px 14px 6px 6px;font-weight:700;font-size:16px;color:var(--text);background:var(--card);border:1px solid var(--line);text-decoration:none;box-shadow:0 6px 18px -12px #00000066}
 .btn::after{content:"";position:absolute;top:-1px;right:-1px;width:12px;height:12px;background:var(--bg);border-left:1px solid var(--line);border-bottom:1px solid var(--line);border-bottom-left-radius:5px;border-top-right-radius:14px}
@@ -53,13 +56,17 @@ h1 .grad{background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-backgroun
 .rows{margin-top:auto;display:flex;flex-direction:column;gap:10px}
 .rows div{display:flex;justify-content:space-between;padding:14px 16px;border-radius:14px;background:#ffffff22;font-size:14px;font-weight:700}
 /* 강점 요약 카드 (phone 목업 대체) */
-.keycard{width:100%;max-width:380px;padding:26px;border-radius:24px;background:var(--card);border:1px solid var(--line);box-shadow:0 24px 54px -30px #7a5cf066}
-.keycard-tag{display:inline-block;padding:7px 14px;border-radius:999px;background:linear-gradient(90deg,var(--c1),var(--c2));color:#fff;font-size:13px;font-weight:700;margin-bottom:18px}
-.keylist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
-.keylist li{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;background:var(--bg);border:1px solid var(--line)}
-.keylist-ic{font-size:22px}
-.keylist b{display:block;font-size:16px}
-.keylist small{color:var(--muted);font-size:13px}
+.keycard{width:100%;max-width:400px;padding:26px;border-radius:24px;background:var(--card);border:1px solid var(--line);box-shadow:0 24px 54px -30px #7a5cf066;text-align:center}
+.keycard-tag{display:inline-block;padding:7px 14px;border-radius:999px;background:linear-gradient(90deg,var(--c1),var(--c2));color:#fff;font-size:13px;font-weight:700;margin-bottom:24px}
+/* 원 3개 삼각형 배치 */
+.tri{position:relative;width:300px;height:270px;margin:0 auto}
+.tri-circle{position:absolute;width:132px;height:132px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:linear-gradient(145deg,var(--c1),var(--c2));color:#fff;box-shadow:0 14px 30px -14px #ff5fa288;text-align:center;padding:8px}
+.tri-circle b{font-size:15px}
+.tri-ic{font-size:26px}
+.tri-top{top:0;left:50%;transform:translateX(-50%)}
+.tri-left{bottom:0;left:0}
+.tri-right{bottom:0;right:0}
+@media(max-width:420px){.tri{width:260px;height:240px}.tri-circle{width:116px;height:116px}}
 @media(max-width:560px){.stats{gap:18px;padding:18px}.chip{display:none}}
 /* 추가 섹션 */
 .section{max-width:980px;width:100%}
@@ -73,13 +80,14 @@ h1 .grad{background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-backgroun
 .item p{font-family:'Jua','Noto Sans KR',sans-serif;margin:0;color:var(--muted);font-size:16px;line-height:1.75}
 .tags{display:flex;flex-wrap:wrap;gap:8px}
 .tags span{padding:8px 16px;border-radius:999px;background:linear-gradient(90deg,#f0ebff,#ffe9f4);color:#6a4bd1;font-weight:700;font-size:14px;border:1px solid var(--line)}
-.timeline{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--line);margin-left:8px;padding-left:24px}
-.tl{position:relative;padding:0 0 26px}
-.tl:last-child{padding-bottom:0}
-.tl::before{content:"";position:absolute;left:-31px;top:4px;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--c1),var(--c2))}
-.tl b{display:block;font-size:14px;color:var(--c1);margin-bottom:4px}
+.timeline{display:flex;flex-direction:row;flex-wrap:wrap;gap:18px}
+.tl{flex:1 1 240px;position:relative;padding:22px;border-radius:20px;background:var(--card);border:1px solid var(--line);box-shadow:0 16px 36px -28px #7a5cf066}
+.tl::before{content:"";position:absolute;left:22px;top:-6px;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--c1),var(--c2))}
+.tl b{display:block;font-size:14px;color:var(--c1);margin:6px 0 6px}
 .tl h3{margin:0 0 6px;font-size:18px}
 .tl p{margin:0;color:var(--muted);font-size:15px;line-height:1.7}
+.tl sup{font-size:11px;color:var(--c1)}
+.footnote{max-width:980px;width:100%;margin:14px 0 0;font-size:13px;color:var(--muted)}
 .contact{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
 footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;border-top:1px solid var(--line)}
 /* 방명록 */
@@ -110,12 +118,13 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;bord
   <div class="badge"><i></i><span>국민대학교 경영정보학부</span></div>
   <section class="hero">
     <div class="left reveal">
-      <p class="name"><span class="name-ko">김예찬</span><span class="name-en">Kim Ye-Chan</span></p>
+      <p class="name"><span class="name-ko">김예찬</span><span class="name-en">Kim ye Chan</span></p>
       <h1><span>믿음과 책임감으로,</span><span class="grad">팀의 신뢰를 쌓습니다.</span></h1>
-      <p>안녕하세요, 국민대학교 경영정보학부 김예찬입니다. 맡은 일은 크고 작음을 따지지 않고 최선을 다해 해내려 합니다. 주변을 챙기고 배려하는 태도로, 함께하는 사람들에게 믿음을 주는 사람이 되고 싶습니다.</p>
+      <p>안녕하세요, 국민대학교 경영정보학부 <strong class="hl-name">김예찬</strong>입니다. 맡은 일은 크고 작음을 따지지 않고 최선을 다해 해내려 합니다. 주변을 챙기고 배려하는 태도로, 함께하는 사람들에게 믿음을 주는 사람이 되고 싶습니다.</p>
+      <p class="reader">이 페이지를 읽을 사람 · <span>경영정보학부 가족들, 교수님 그리고 나를 알고 싶은 당신</span></p>
       <div class="btns">
-        <a class="btn main" href="#strength"><span aria-hidden="true">📄</span>나의 강점 보기</a>
-        <a class="btn" href="#about"><span aria-hidden="true">📄</span>나는 어떤 사람?</a>
+        <a class="btn main" href="#strength">나의 강점 보기</a>
+        <a class="btn" href="#about">나는 어떤 사람?</a>
       </div>
       <div class="stats">
         <div><b>경영정보학부</b><span>국민대학교</span></div>
@@ -125,11 +134,11 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;bord
     <div class="right reveal">
       <div class="keycard">
         <span class="keycard-tag">나를 설명하는 세 가지</span>
-        <ul class="keylist">
-          <li><span class="keylist-ic">🤝</span><div><b>신뢰</b><small>맡은 일로 믿음에 보답합니다</small></div></li>
-          <li><span class="keylist-ic">🧭</span><div><b>리더십</b><small>책임을 먼저 실천합니다</small></div></li>
-          <li><span class="keylist-ic">💬</span><div><b>소통과 배려</b><small>먼저 다가가고 배려합니다</small></div></li>
-        </ul>
+        <div class="tri">
+          <div class="tri-circle tri-top"><span class="tri-ic">🤝</span><b>신뢰</b></div>
+          <div class="tri-circle tri-left"><span class="tri-ic">🧭</span><b>리더십</b></div>
+          <div class="tri-circle tri-right"><span class="tri-ic">💬</span><b>소통과 배려</b></div>
+        </div>
       </div>
     </div>
   </section>
@@ -158,9 +167,10 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;bord
     <h2>경험 타임라인</h2>
     <p class="desc">리더의 자리에서 책임을 먼저 실천해 온 과정입니다.</p>
     <div class="timeline">
-      <div class="tl"><b>학창 시절</b><h3>학급 회장 · 동아리 부장 · 학생회</h3><p>여러 역할을 맡으며 의견을 조율하고, 맡은 일에 책임을 지는 법을 배웠습니다.</p></div>
-      <div class="tl"><b>대학 시절</b><h3>경영정보학부 학회 운영위원회 (홍보과)</h3><p>학회 운영위원회 홍보과에서 활동하며 팀으로 일하는 경험과 책임감을 이어가고 있습니다.</p></div>
+      <div class="tl"><b>고등학교</b><h3>양정고등학교</h3><p>학급 회장 · 동아리 부장 · 학생회</p></div>
+      <div class="tl"><b>대학교</b><h3>국민대학교 경영정보학부</h3><p>SITA<sup>*</sup> 운영위원회</p></div>
     </div>
+    <p class="footnote">* SITA: 국민대학교 경영정보학부 학회</p>
   </section>
 
   <section class="section reveal" id="projects">
@@ -180,11 +190,12 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;bord
   </section>
 
   <section class="section reveal" id="contact">
-    <h2>CONTACT</h2>
+    <h2>Contact</h2>
     <p class="desc">아래 링크로 저를 더 알아보실 수 있습니다.</p>
     <div class="contact">
       <a class="btn" href="mailto:yechan0420@kookmin.ac.kr">yechan0420@kookmin.ac.kr</a>
       <a class="btn" href="https://github.com/yechan0420-stack" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://instagram.com/yy_eh_0420" target="_blank" rel="noopener">Instagram - yy_eh_0420</a>
     </div>
   </section>
 
