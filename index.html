@@ -11,6 +11,7 @@
 <meta property="og:description" content="믿음과 책임감으로 팀의 신뢰를 쌓아가는 사람. 국민대학교 경영정보학부 김예찬.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237a5cf0'/%3E%3Ctext x='16' y='22' font-size='18' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3E김%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{--c1:#ff5fa2;--c2:#ff8ec0;--bg:#121019;--card:#1c1930;--line:#302b47;--text:#f0edf7;--muted:#a69fc0}
 *{box-sizing:border-box}
@@ -231,7 +232,13 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;bord
 
 <script>
 (function () {
-  var API = '/.netlify/functions/guestbook';
+  // ── Supabase 설정 (브라우저 직접 호출) ──────────────────────────────
+  // publishable 키는 브라우저 공개용이라 코드에 넣어도 안전합니다.
+  // (service_role/secret 키는 절대 여기 넣지 마세요.)
+  var SUPABASE_URL = 'https://wenlhuuklyynrdqjlbuz.supabase.co';
+  var SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_Stm4jdLSxoKlI_STkFLjoQ_ZYrFa97J';
+  // ────────────────────────────────────────────────────────────────
+
   var NAME_MAX = 20, MESSAGE_MAX = 200;
 
   var form = document.getElementById('gb-form');
@@ -248,6 +255,17 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;bord
     statusEl.textContent = text;
     statusEl.className = 'gb-status' + (kind ? ' ' + kind : '');
   }
+
+  // Supabase 클라이언트 생성 (CDN 라이브러리 필요)
+  if (!window.supabase || typeof window.supabase.createClient !== 'function') {
+    setStatus('방명록 라이브러리를 불러오지 못했어요.', 'err');
+    return;
+  }
+  if (SUPABASE_PUBLISHABLE_KEY.indexOf('PUT_YOUR') === 0) {
+    setStatus('방명록 설정이 아직 완료되지 않았어요. (publishable 키 입력 필요)', 'err');
+    return;
+  }
+  var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
   function fmtTime(iso) {
     var d = new Date(iso);
@@ -299,23 +317,22 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;bord
     }
   }
 
+  var LIMIT = 50;
+
   function load() {
     setStatus('메시지를 불러오는 중…', 'load');
-    fetch(API, { method: 'GET' })
+    sb.from('guestbook')
+      .select('id, name, message, created_at', { count: 'exact' })
+      .order('created_at', { ascending: false })
+      .limit(LIMIT)
       .then(function (res) {
-        return res.json().then(function (body) { return { ok: res.ok, body: body }; });
-      })
-      .then(function (r) {
-        if (!r.ok) {
-          setStatus((r.body && r.body.error) || '메시지를 불러오지 못했어요.', 'err');
+        if (res.error) {
+          setStatus('메시지를 불러오지 못했어요.', 'err');
           return;
         }
-        renderEntries(r.body.entries);
-        showMore(r.body.total, r.body.shown);
+        renderEntries(res.data);
+        showMore(res.count, res.data ? res.data.length : 0);
         setStatus('', '');
-      })
-      .catch(function () {
-        setStatus('메시지를 불러오지 못했어요. 네트워크를 확인해 주세요.', 'err');
       });
   }
 
@@ -331,7 +348,7 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;bord
     var name = nameEl.value.trim();
     var message = msgEl.value.trim();
 
-    // 1차(클라이언트) 검증 — 서버도 동일하게 재검증한다
+    // 클라이언트 검증 (DB의 길이 제약 constraint가 2차 방어)
     if (!name || !message) {
       setStatus('이름과 메시지를 입력해 주세요.', 'err');
       return;
@@ -344,18 +361,13 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;bord
     submitEl.disabled = true;               // 중복 제출 방지
     setStatus('저장 중…', 'load');
 
-    fetch(API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name, message: message })
-    })
+    sb.from('guestbook')
+      .insert({ name: name, message: message })
       .then(function (res) {
-        return res.json().then(function (body) { return { ok: res.ok, body: body }; });
-      })
-      .then(function (r) {
-        if (!r.ok) {
+        if (res.error) {
           // 실패를 성공처럼 표시하지 않는다
-          setStatus((r.body && r.body.error) || '저장에 실패했어요.', 'err');
+          setStatus('저장에 실패했어요. 잠시 후 다시 시도해 주세요.', 'err');
+          submitEl.disabled = false;
           return;
         }
         nameEl.value = '';
@@ -363,13 +375,8 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding-top:16px;bord
         nameCount.textContent = '0 / ' + NAME_MAX;
         msgCount.textContent = '0 / ' + MESSAGE_MAX;
         setStatus('메시지를 남겼어요.', 'ok');
-        load();                              // 저장 후 다시 조회
-      })
-      .catch(function () {
-        setStatus('저장에 실패했어요. 네트워크를 확인해 주세요.', 'err');
-      })
-      .finally(function () {
         submitEl.disabled = false;
+        load();                              // 저장 후 다시 조회
       });
   });
 
