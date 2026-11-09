@@ -31,6 +31,10 @@ exports.handler = async (event) => {
     return json(500, { error: '서버 환경변수가 설정되지 않았습니다.' });
   }
 
+  // 디버그: 환경변수 형태 확인(값 자체는 노출하지 않고 앞부분/길이만)
+  console.log('DBG url starts:', String(SUPABASE_URL).slice(0, 30));
+  console.log('DBG key prefix:', String(SUPABASE_SERVICE_ROLE_KEY).slice(0, 10), 'len:', String(SUPABASE_SERVICE_ROLE_KEY).length);
+
   const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
     auth: { persistSession: false },
   });
@@ -50,6 +54,7 @@ exports.handler = async (event) => {
       .limit(LIMIT);
 
     if (error) {
+      console.error('DBG GET supabase error:', JSON.stringify(error));
       return json(502, { error: '메시지를 불러오지 못했어요.' });
     }
     return json(200, { entries: data, total: count, shown: data.length, limit: LIMIT });
@@ -82,6 +87,7 @@ exports.handler = async (event) => {
       .single();
 
     if (error) {
+      console.error('DBG POST supabase error:', JSON.stringify(error));
       return json(502, { error: '저장에 실패했어요. 잠시 후 다시 시도해 주세요.' });
     }
     return json(201, { entry: data });
